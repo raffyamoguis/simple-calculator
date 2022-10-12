@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react'
 
 function App() {
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(0);
+  const [sum, setSum] = useState(0);
+
+  useEffect(() => {
+    const handleSum = async () => {
+      if (isNaN(num1) || isNaN(num2)) {
+        return;
+      }
+      setSum(num1 + num2)
+    }
+    handleSum();
+  }, [num1, num2]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='wrapper'>
+      <div className='content'>
+        <div className='num-input'>
+          <label>Enter number 1:</label>
+          <input type="number" onChange={(e) => setNum1(parseInt(e.target.value))} />
+        </div>
+        <div className='num-input'>
+          <label>Enter number 2:</label>
+          <input type="number" onChange={(e) => setNum2(parseInt(e.target.value))} />
+        </div>
+        <div className='result'>Result: {sum}</div>
+      </div>
     </div>
   );
 }
