@@ -16,18 +16,24 @@ function App() {
     handleSum();
   }, [num1, num2]);
 
+  const resetInputs = () => {
+    setNum1(0);
+    setNum2(0);
+  }
+
   return (
     <div className='wrapper'>
       <div className='content'>
         <div className='num-input'>
           <label>Enter number 1:</label>
-          <input type="number" onChange={(e) => setNum1(parseInt(e.target.value))} />
+          <input type="number" onChange={(e) => setNum1(parseInt(e.target.value))} value={num1} />
         </div>
         <div className='num-input'>
           <label>Enter number 2:</label>
-          <input type="number" onChange={(e) => setNum2(parseInt(e.target.value))} />
+          <input type="number" onChange={(e) => setNum2(parseInt(e.target.value))} value={num2} />
         </div>
         <div className='result'>Result: {sum}</div>
+        <button style={{ marginTop: '10px' }} onClick={resetInputs}>Reset</button>
       </div>
     </div>
   );
